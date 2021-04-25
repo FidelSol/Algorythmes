@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>График</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <base href="/">
+    <!-- App favicon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet" />
+</head>
+<body>
+
+                                <div id="graph" class="card" >
+                                         <div class="card-body">
+                                        <h5><i class="uil-chart-line mr-1"></i>График Урок №4 Задача №1</h5>
+
+                                            <canvas id="line-chart" height="50"></canvas>
+
+                                         </div>
+                                </div>
+                                <hr/>
+                                 <div id="graph2" class="card" >
+                                         <div class="card-body">
+                                        <h5><i class="uil-chart-line mr-1"></i>График Урок №4 Задача №2</h5>
+
+                                            <canvas id="line-chart2" height="50"></canvas>
+
+                                         </div>
+                                </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous"></script>-->
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script type="text/javascript">
+var Canvas = document.getElementById("line-chart");
+
+var bad_solution = {
+  label: 'Первое решение',
+  data: [0.0007129999999999914, 0.016340300000000002, 0.06993210000000002, 0.2858366, 1.8407706999999998, 7.0612242, 16.5100526, 30.2133166, 66.76122480000001, 181.1419216],
+  borderColor: '#fa5c7c',
+
+  yAxisID: "y-axis-first"
+};
+
+var second_solution = {
+  label: 'Второе решение',
+  data: [0.0009670999999999985, 0.004988799999999988, 0.010134399999999988, 0.020444500000000004, 0.052524299999999996, 0.10086020000000001, 0.14299119999999998, 0.2008107, 0.3143153999999999, 0.48188759999999986],
+  borderColor: '#C71585',
+
+  yAxisID: "y-axis-second"
+};
+
+var third_solution = {
+  label: 'Третье решение',
+  data: [0.0005499999999999949, 0.003014899999999987, 0.004394700000000001, 0.008859300000000014, 0.023214999999999986, 0.04162759999999999, 0.06164709999999998, 0.0847462, 0.12137800000000004, 0.21941520000000003],
+  borderColor: '#00FF00',
+
+  yAxisID: "y-axis-third"
+};
+
+
+var Data = {
+  labels: [100, 500, 1000, 2000, 5000, 10000, 15000, 20000, 30000, 50000],
+  datasets: [bad_solution, second_solution, third_solution]
+};
+
+var chartOptions = {
+  scales: {
+    yAxes: [{
+      id: "y-axis-first",
+      ticks: { min: 0, max: 0.5}
+
+    }, {
+      id: "y-axis-second",
+      display: false,
+        ticks: { min: 0, max: 0.5}
+
+    }, {
+      id: "y-axis-third",
+      display: false,
+
+        ticks: { min: 0, max: 0.5, stepSize: 0.005}
+    },
+    ]
+
+  }
+};
+
+
+var barChart = new Chart(Canvas, {
+  type: 'line',
+  data: Data,
+  options: chartOptions
+});
+
+
+var Canvas2 = document.getElementById("line-chart2");
+
+var resheto = {
+  label: 'С решетом Эратосфена',
+  data: [0.004826800000000003, 0.031514099999999996, 0.19487819999999997, 0.5747092, 1.2731383000000003, 2.285884, 3.8521494, 6.0543952, 8.435184000000001, 11.5518766],
+  borderColor: '#fa5c7c',
+
+  yAxisID: "y-axis-first"
+};
+
+var without_resheto = {
+  label: 'Без решета',
+  data: [0.00028579999999999925, 0.0009223000000000009, 0.002556599999999999, 0.004770300000000002, 0.007899800000000005, 0.0114357, 0.015423, 0.021200800000000006, 0.025369199999999995, 0.031491799999999986],
+  borderColor: '#C71585',
+
+  yAxisID: "y-axis-second"
+};
+
+var Data2 = {
+  labels: [5, 10, 20, 30, 40, 50, 60, 70, 80, 90],
+  datasets: [resheto, without_resheto]
+};
+
+var chartOptions2 = {
+  scales: {
+    yAxes: [{
+      id: "y-axis-first",
+      ticks: { min: 0, max: 0.15}
+
+    }, {
+      id: "y-axis-second",
+      display: false,
+        ticks: { min: 0, max: 0.15, stepSize: 0.005}
+
+    }]
+
+  }
+};
+
+
+var barChart = new Chart(Canvas2, {
+  type: 'line',
+  data: Data2,
+  options: chartOptions2
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+            </body>
+        </html>
